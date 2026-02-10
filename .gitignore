@@ -22,9 +22,11 @@
 !.gitignore
 !.gitattributes
 !.gersemirc
+!/.devcontainer
 !deps.json
 !CMakeLists.txt
 !CMakePresets.json
+!Dockerfile
 
 # Exclude old macOS Finder metadata
 .DS_Store
