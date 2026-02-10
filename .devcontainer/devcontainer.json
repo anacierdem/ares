@@ -1,5 +1,5 @@
 {
-    "build": { "dockerfile": "../Dockerfile", "context": "../" },
+    "build": { "dockerfile": "./Dockerfile", "context": "../" },
     "runArgs": [
         "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
         "-v", "${localEnv:XAUTHORITY}:${localEnv:XAUTHORITY}:ro",
