@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:24.04 as builder
 
 # install ares dependencies
 RUN apt-get update && apt-get install \
@@ -33,3 +33,7 @@ COPY --chown=ubuntu:ubuntu . .
 WORKDIR /ares/build
 RUN cmake .. -G Ninja -DARES_CORES="n64"
 RUN cmake --build .
+
+# Minimal stage
+FROM ubuntu:24.04
+COPY --from=builder /ares/build/rundir /ares/build/rundir
