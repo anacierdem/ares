@@ -1,5 +1,6 @@
 {
-    "build": { "dockerfile": "./Dockerfile", "context": "../" },
+    "build": { "dockerfile": "../Dockerfile", "context": "../", "target": "dependencies" },
+    "containerUser": "ubuntu",
     "runArgs": [
         "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
         "-v", "${localEnv:XAUTHORITY}:${localEnv:XAUTHORITY}:ro",

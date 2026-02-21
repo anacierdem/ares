@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 as builder
+FROM ubuntu:24.04 as dependencies
 
 # install ares dependencies
 RUN apt-get update && apt-get install \
@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install \
     libudev-dev \
     -yq
 
+FROM dependencies as builder
+
 USER ubuntu
 
 WORKDIR /ares
@@ -36,4 +38,18 @@ RUN cmake --build .
 
 # Minimal stage
 FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install \
+    # ares deps
+    libgtk-3-dev \
+    libcanberra-gtk-module \
+    libgl-dev \
+    # audio
+    libasound2-dev \
+    libao-dev \
+    libopenal-dev \
+    libpulse-dev \
+    libudev-dev \
+    -yq
+
 COPY --from=builder /ares/build/rundir /ares/build/rundir
